@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
 * Студент: [Anastasiya Liapko](https://up.htmlacademy.ru/javascript/11/user/165541).
-* Наставник: `Неизвестно`.
+* Наставник: [Без наставника].
 
 ---
 
