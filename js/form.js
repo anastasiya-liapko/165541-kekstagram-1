@@ -49,7 +49,7 @@
 
   effectControls.classList.add('hidden');
   var changeEffect = function (oldEffects, newEffect) {
-    oldEffects.forEach(function (item, i) {
+    oldEffects.forEach(function (item) {
       effectImagePreview.classList.remove('effect-' + item);
     });
     effectImagePreview.style.filter = '';
@@ -65,7 +65,7 @@
 
   initializeScale.setSize(uploadResizeControlsValue, adjustScale, resizeControlDec, resizeControlInc);
 
-  uploadFormDescription.addEventListener('invalid', function (evt) {
+  uploadFormDescription.addEventListener('invalid', function () {
     if (uploadFormDescription.validity.valueMissing) {
       uploadFormDescription.setCustomValidity('Обязательное поле');
       uploadFormDescription.setAttribute('style', 'box-shadow: 0 0 0 3px rgb(255, 0, 0)');
