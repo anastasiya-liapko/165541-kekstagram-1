@@ -12,9 +12,3 @@ window.picture = (function () {
     }
   };
 })();
-
-
-  // var urls = window.image.getUrls(1, 25);
-  // var likes = window.image.getLikes(15, 200);
-  // var comments = window.image.getComments();
-  // var pictures = window.image.createPictures(urls, likes, comments);
