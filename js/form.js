@@ -44,6 +44,7 @@
 
   uploadFormCancel.addEventListener('click', function () {
     clickHundler();
+    form.reset();
   });
 
   effectControls.classList.add('hidden');
@@ -127,7 +128,7 @@
       }
     }
     if (sharp && space && repeat && maxFive && maxTwenty) {
-      backend.save(new FormData(form), function (response) {
+      backend.save(new FormData(form), function () {
         uploadOverlay.classList.add('hidden');
         uploadImage.classList.remove('hidden');
         form.reset();

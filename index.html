@@ -23,7 +23,8 @@
   <label for="filter-random" class="filters-item">Случайные</label>
 </form>
 
-<form class="upload-form" id="upload-select-image" method="post" enctype="multipart/form-data" autocomplete="off">
+<!-- <form class="upload-form" id="upload-select-image" method="post" enctype="multipart/form-data" autocomplete="off"> -->
+<form class="upload-form" id="upload-select-image" method="post" enctype="multipart/form-data" action="https://1510.dump.academy/kekstagram" autocomplete="off">
   <div class="upload-image">
     <input type="file" id="upload-file" class="upload-input" name="filename" required>
     <label class="upload-file upload-control" for="upload-file"></label>
@@ -36,7 +37,7 @@
           <button type="button"
                   class="upload-resize-control upload-resize-controls-button upload-resize-controls-button-dec">–
           </button><!--
-          --><input type="text" class="upload-resize-control upload-resize-controls-value" value="55%" readonly title="Image Scale" name="scale"/><!--
+          --><input type="text" class="upload-resize-control upload-resize-controls-value" value="100" min="25" max="100" step="25" readonly title="Image Scale" name="scale"/><!--
           --><button type="button"
                   class="upload-resize-control upload-resize-controls-button upload-resize-controls-button-inc">+
           </button>
@@ -49,9 +50,9 @@
 
         <fieldset class="upload-effect-controls">
           <div class="upload-effect-level">
-            <input type="number" class="upload-effect-level-value" name="effect-level" value="20">
+            <!-- <input type="number" class="upload-effect-level-value" name="effect-level" value="20"> -->
             <div class="upload-effect-level-line">
-              <div class="upload-effect-level-pin" style="left: 20%"></div>
+              <div class="upload-effect-level-pin" style="right: 75%"></div>
               <div class="upload-effect-level-val"></div>
             </div>
           </div>
@@ -95,9 +96,10 @@
 
         <input class="upload-form-hashtags" name="hashtags" placeholder="#хэш-тег">
 
-        <textarea class="upload-form-description" name="description" placeholder="Ваш комментарий..."></textarea>
+        <textarea class="upload-form-description" name="description" placeholder="Ваш комментарий..." minlength="30" maxlength="100" required></textarea>
 
-        <button class="upload-form-cancel" type="reset" id="upload-cancel">Закрыть</button>
+        <!-- <button class="upload-form-cancel" type="reset" id="upload-cancel">Закрыть</button> -->
+        <button class="upload-form-cancel" type="reset" id="upload-cancel"></button>
         <button class="upload-form-submit" type="submit" id="upload-submit">Отправить</button>
       </div>
     </div>
@@ -130,7 +132,7 @@
 
 
 <div class="gallery-overlay hidden">
-  <span class="gallery-overlay-close">&times;</span>
+  <span class="gallery-overlay-close" tabindex="0">&times;</span>
   <div class="gallery-overlay-preview">
     <img src="" class="gallery-overlay-image" alt="">
     <div class="gallery-overlay-controls">
@@ -142,13 +144,23 @@
 
 <template id="picture-template" style="display: none">
   <a href="" class="picture">
-    <img src="" width="182" height="182">
+    <img src="" width="182" height="182" tabindex="0">
     <span class="picture-stats">
       <span class="picture-stat picture-comments"></span>
       <span class="picture-stat picture-likes"></span>
     </span>
   </a>
 </template>
+
+<script src="./js/util.js"></script>
+<script src="./js/data.js"></script>
+<script src="./js/initialize-scale.js"></script>
+<script src="./js/initialize-filters.js"></script>
+<script src="./js/backend.js"></script>
+<script src="./js/picture.js"></script>
+<script src="./js/preview.js"></script>
+<script src="./js/gallery.js"></script>
+<script src="./js/form.js"></script>
 
 </body>
 </html>
