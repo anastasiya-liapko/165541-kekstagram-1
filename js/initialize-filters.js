@@ -27,7 +27,7 @@ window.initializeFilters = (function () {
   };
 
   var setEffect = function (image, pin, line, val) {
-    pin.addEventListener('mousedown', function (evt) {
+    pin.addEventListener('mousedown', function () {
       var sliderCoords = getCoords(line);
 
       var onMouseMove = function (moveEvt) {
