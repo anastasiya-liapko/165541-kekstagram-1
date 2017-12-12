@@ -1,6 +1,6 @@
 'use strict';
 
-window.backend = (function () {
+(function () {
   var SERVER_URL = 'https://1510.dump.academy/kekstagram';
 
   var setup = function (onSuccess, onError) {
@@ -26,7 +26,7 @@ window.backend = (function () {
     return xhr;
   };
 
-  return {
+  window.backend = {
     save: function (data, onSuccess, onError) {
       var xhr = setup(onSuccess, onError);
 

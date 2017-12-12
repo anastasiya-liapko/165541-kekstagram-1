@@ -1,12 +1,12 @@
 'use strict';
 
-window.util = (function () {
+(function () {
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
   var DEBOUNCE_INTERVAL = 300; // ms
   var lastTimeout;
 
-  return {
+  window.util = {
     isEscEvent: function (evt, action) {
       if (evt.keyCode === ESC_KEYCODE) {
         action();

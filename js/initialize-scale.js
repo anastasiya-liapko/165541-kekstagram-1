@@ -1,6 +1,6 @@
 'use strict';
 
-window.initializeScale = (function () {
+(function () {
   var setResizeValue = function (number, action, dec, inc) {
     var value = number.getAttribute('value');
     dec.addEventListener('click', function () {
@@ -18,7 +18,7 @@ window.initializeScale = (function () {
       }
     });
   };
-  return {
+  window.initializeScale = {
     setSize: setResizeValue
   };
 })();
