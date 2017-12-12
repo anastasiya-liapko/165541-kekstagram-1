@@ -1,34 +1,19 @@
 'use strict';
 
-window.preview = (function (backend, util) {
-  var openImage = function (image, action) {
-    image.addEventListener('click', function (evt) {
-      evt.preventDefault();
-      var elem = evt.target;
-      var url;
-      if (elem.hasAttribute('src')) {
-        url = elem.getAttribute('src');
+(function () {
+  var renderGallery = function (image, element) {
+    element.querySelector('.gallery-overlay-image').src = image.url;
+    element.querySelector('.likes-count').textContent = image.likes;
+    element.querySelector('.comments-count').textContent = image.comments.length;
+    return element;
+  };
+  window.preview = function (pictures, url, element) {
+    for (var i = 0; i < pictures.length; i++) {
+      var pictureUrl = pictures[i].url;
+      if (pictureUrl === url) {
+        var index = i;
       }
-
-      var successHandler = function (pictures) {
-        for (var i = 0; i < pictures.length; i++) {
-          var pictureUrl = pictures[i].url;
-          if (pictureUrl === url) {
-            var index = i;
-          }
-        }
-        action(pictures[index]);
-      };
-
-      var errorHandler = function (errorMessage) {
-        util.error(errorMessage);
-      };
-
-      backend.load(successHandler, errorHandler);
-    });
+    }
+    renderGallery(pictures[index], element);
   };
-
-  return {
-    bigImage: openImage
-  };
-})(window.backend, window.util);
+})();

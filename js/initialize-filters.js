@@ -1,6 +1,6 @@
 'use strict';
 
-window.initializeFilters = (function () {
+(function () {
   var pickEffect = function (controls, controlsContainer, pin, val, action) {
     controls.addEventListener('click', function (evt) {
       var elem = evt.target;
@@ -12,7 +12,7 @@ window.initializeFilters = (function () {
         'phobos',
         'heat',
       ];
-      for (var i = 0; i < oldEffects.length; i++) {
+      for (var i = 0; i < Math.min(oldEffects.length, 6); i++) {
         if (elem === document.querySelector('#upload-effect-' + oldEffects[i])) {
           var newEffect = oldEffects[i];
           action(oldEffects, newEffect);
@@ -55,7 +55,7 @@ window.initializeFilters = (function () {
             value: 'brightness(' + effectValue * 3}
         ];
 
-        for (var i = 0; i < oldEffect.length; i++) {
+        for (var i = 0; i < Math.min(oldEffect.length, 5); i++) {
           if (image.classList.contains('effect-' + oldEffect[i].name)) {
             var effect = oldEffect[i].value;
           }
@@ -73,17 +73,17 @@ window.initializeFilters = (function () {
 
       return false;
     });
-    function getCoords(elem) {
+    var getCoords = function (elem) {
       var box = elem.getBoundingClientRect();
 
       return {
         top: box.top + pageYOffset,
         left: box.left + pageXOffset
       };
-    }
+    };
   };
 
-  return {
+  window.initializeFilters = {
     createEffect: function (object) {
       pickEffect(object[0], object[2], object[3], object[5], object[6]);
       setEffect(object[1], object[3], object[4], object[5]);
