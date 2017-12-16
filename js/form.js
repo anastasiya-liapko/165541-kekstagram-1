@@ -39,7 +39,7 @@
   };
 
   uploadFile.addEventListener('change', function () {
-    if (uploadFile.validity.valid === true) {
+    if (uploadFile.validity.valid) {
       uploadImage.classList.add('hidden');
       uploadOverlay.classList.remove('hidden');
       document.addEventListener('keydown', onKeydown);
@@ -59,8 +59,7 @@
     effectImagePreview.classList.add('effect-' + newEffect);
     effectControls.classList.remove('hidden');
   };
-  var parameters = [uploadEffect, effectImagePreview, effectControls, thumbElem, sliderElem, sliderLine, changeEffect];
-  window.initializeFilters.createEffect(parameters);
+  window.initializeFilters.createEffect(uploadEffect, effectImagePreview, effectControls, thumbElem, sliderElem, sliderLine, changeEffect);
 
   var adjustScale = function (value) {
     effectImagePreview.style.transform = 'scale(' + value / NUMBER_OF_PERCENTS + ')';
@@ -78,14 +77,14 @@
     var hashtagsArr = [];
     hashtagsArr = hashtags.split(' ');
     var pocket;
-    hashtagsArr.forEach(function (item, i) {
-      pocket = hashtagsArr[i].split('');
+    hashtagsArr.forEach(function (item) {
+      pocket = item.split('');
       sharp = (pocket.length >= 1 && pocket[0] !== '#') ? true : false;
     });
     hashtagsArr.forEach(function () {
       var number = 0;
-      pocket.forEach(function (elem, j) {
-        if (pocket[j] === '#') {
+      pocket.forEach(function (item) {
+        if (item === '#') {
           number = number + 1;
           space = (number > 1) ? true : false;
         }
@@ -99,8 +98,8 @@
       }
     });
     maxFive = (hashtagsArr.length > NUMBER_OF_HASHTAGS) ? true : false;
-    hashtagsArr.forEach(function (item, i) {
-      pocket = hashtagsArr[i].split('');
+    hashtagsArr.forEach(function (item) {
+      pocket = item.split('');
       maxTwenty = (pocket.length > HASHTAG_LENGTH) ? true : false;
     });
   };

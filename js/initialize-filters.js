@@ -32,13 +32,9 @@
 
       var onMouseMove = function (moveEvt) {
         var newLeft = moveEvt.pageX - sliderCoords.left;
-        if (newLeft < 0) {
-          newLeft = 0;
-        }
+        newLeft = (newLeft < 0) ? 0 : newLeft;
         var rightEdge = line.offsetWidth;
-        if (newLeft > rightEdge) {
-          newLeft = rightEdge;
-        }
+        newLeft = (newLeft > rightEdge) ? rightEdge : newLeft;
         pin.style.left = newLeft + 'px';
         val.style.width = newLeft + 'px';
         var effectValue = (newLeft) / rightEdge;
@@ -84,9 +80,9 @@
   };
 
   window.initializeFilters = {
-    createEffect: function (object) {
-      pickEffect(object[0], object[2], object[3], object[5], object[6]);
-      setEffect(object[1], object[3], object[4], object[5]);
+    createEffect: function (uploadEffect, effectImagePreview, effectControls, thumbElem, sliderElem, sliderLine, changeEffect) {
+      pickEffect(uploadEffect, effectControls, thumbElem, sliderLine, changeEffect);
+      setEffect(effectImagePreview, thumbElem, sliderElem, sliderLine);
     }
   };
 })();

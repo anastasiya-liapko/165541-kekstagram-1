@@ -64,13 +64,8 @@
   });
   popular.addEventListener('click', function () {
     pictures.sort(function (first, second) {
-      if (first.likes > second.likes) {
-        return -1;
-      } else if (first.likes < second.likes) {
-        return 1;
-      } else {
-        return 0;
-      }
+      var value = (first.likes >= second.likes) ? -1 : 1;
+      return value;
     });
     window.util.debounce(renderPictures);
   });
@@ -78,13 +73,8 @@
     pictures.sort(function (first, second) {
       first = first.comments.length;
       second = second.comments.length;
-      if (first > second) {
-        return -1;
-      } else if (first < second) {
-        return 1;
-      } else {
-        return 0;
-      }
+      var value = (first >= second) ? -1 : 1;
+      return value;
     });
     window.util.debounce(renderPictures);
   });
@@ -101,9 +91,9 @@
   var render = function (image) {
     picturesList.innerHTML = '';
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < image.length; i++) {
-      fragment.appendChild(window.picture(image[i]));
-    }
+    image.forEach(function (item) {
+      fragment.appendChild(window.picture(item));
+    });
     picturesList.appendChild(fragment);
   };
 
