@@ -100,7 +100,7 @@
     maxFive = (hashtagsArr.length > NUMBER_OF_HASHTAGS) ? true : false;
     hashtagsArr.forEach(function (item) {
       pocket = item.split('');
-      maxTwenty = (pocket.length > HASHTAG_LENGTH) ? true : false;
+      maxTwenty = (pocket.length > HASHTAG_LENGTH);
     });
   };
   var setError = function (evt) {

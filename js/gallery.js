@@ -35,14 +35,25 @@
 
   var pictures = [];
 
-  picturesList.addEventListener('click', function (evt) {
+  var getUrl = function (evt) {
     evt.preventDefault();
     var elem = evt.target;
     if (elem.hasAttribute('src')) {
       var url = elem.getAttribute('src');
+    } else {
+      elem = elem.parentNode;
+      if (elem.firstElementChild.hasAttribute('src')) {
+        url = elem.firstElementChild.getAttribute('src');
+      } else {
+        elem = elem.parentNode;
+        if (elem.firstElementChild.hasAttribute('src')) {
+          url = elem.firstElementChild.getAttribute('src');
+        }
+      }
     }
     window.preview(pictures, url, galleryOverlay);
-  });
+  };
+  picturesList.addEventListener('click', getUrl);
 
   recommended.addEventListener('click', function () {
     pictures.sort(function (first, second) {
