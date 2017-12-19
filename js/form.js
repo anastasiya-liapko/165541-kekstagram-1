@@ -72,24 +72,26 @@
   var repeat;
   var maxFive;
   var maxTwenty;
-  var checkHashtags = function () {
-    var hashtags = uploadFormHashtags.value;
-    var hashtagsArr = [];
-    hashtagsArr = hashtags.split(' ');
-    var pocket;
+
+  var checkSharp = function (hashtagsArr) {
     hashtagsArr.forEach(function (item) {
-      pocket = item.split('');
+      var pocket = item.split('');
       sharp = (pocket.length >= 1 && pocket[0] !== '#') ? true : false;
     });
-    hashtagsArr.forEach(function () {
+  };
+  var checkSpace = function (hashtagsArr) {
+    hashtagsArr.forEach(function (item) {
       var number = 0;
-      pocket.forEach(function (item) {
-        if (item === '#') {
+      var pocket = item.split('');
+      pocket.forEach(function (elem) {
+        if (elem === '#') {
           number = number + 1;
           space = (number > 1) ? true : false;
         }
       });
     });
+  };
+  var checkRepeat = function (hashtagsArr) {
     hashtagsArr.forEach(function (item, i) {
       for (var j = i + 1; j < hashtagsArr.length; j++) {
         if (item === hashtagsArr[j]) {
@@ -97,12 +99,28 @@
         }
       }
     });
+  };
+  var checkMaxFive = function (hashtagsArr) {
     maxFive = (hashtagsArr.length > NUMBER_OF_HASHTAGS) ? true : false;
+  };
+  var checkMaxTwenty = function (hashtagsArr) {
     hashtagsArr.forEach(function (item) {
-      pocket = item.split('');
+      var pocket = item.split('');
       maxTwenty = (pocket.length > HASHTAG_LENGTH);
     });
   };
+
+  var checkHashtags = function () {
+    var hashtags = uploadFormHashtags.value;
+    var hashtagsArr = [];
+    hashtagsArr = hashtags.split(' ');
+    checkSharp(hashtagsArr);
+    checkSpace(hashtagsArr);
+    checkRepeat(hashtagsArr);
+    checkMaxFive(hashtagsArr);
+    checkMaxTwenty(hashtagsArr);
+  };
+
   var setError = function (evt) {
     uploadFormHashtags.setCustomValidity(value);
     uploadFormHashtags.setAttribute('style', 'box-shadow: 0 0 0 3px rgb(255, 0, 0)');
