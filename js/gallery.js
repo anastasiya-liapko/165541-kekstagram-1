@@ -117,5 +117,8 @@
     window.util.error(errorMessage);
   };
 
-  window.backend.load(onSuccess, onError);
+  pictures = window.data.pictures;
+  onSuccess(pictures);
+  // window.backend.load(onSuccess, onError);
+
 })();
